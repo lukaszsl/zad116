@@ -8,6 +8,7 @@ $(function() {
 		return str;
 	}
 
+	//Column class
 	function Column(name) {
 		var self = this; // useful for nested functions
 
@@ -27,7 +28,7 @@ $(function() {
 				self.removeColumn();
 			});
 			$columnAddCard.click(function() {
-				self.addCard(new Card(prompt('Enter the name of the card'))); //sprawdzic czy obieky Card jest tworzony w dalszej kolejnosci czy trzeba go stworzyc zaraz po obiekcie Column
+				self.addCard(new Card(prompt('Enter the name of the card')));
 			});
 			// CONSTRUCTION COLUMN ELEMENT
 			$column.append($columnTitle).append($columnDelete).append($columnAddCard).append($columnCardList);
@@ -43,5 +44,45 @@ $(function() {
 		removeColumn: function() {
 			this.$element.remove();
 		}
+	};
+
+	//Card class
+	function Card(description) {
+		var self = this;
+
+		this.id = randomString();
+		this.description = description;
+		this.$element = createCard();
+
+		function createCard() {
+				// CREATING THE BLOCKS
+				var $card = $('<li>').addClass('card'),
+					$cardDescription = $('<p>').addClass('card-description').text(self.description),
+					$cardDelete = $('<button>').addClass('btn-delete').text('x');
+				// ADDING EVENT
+				$cardDelete.click(function() {
+					self.removeCard();
+				});
+				// CONSTRUCTION CARD ELEMENT
+				$card.append($cardDelete).append($cardDescription);
+				
+				return $card;
+		}
+	}
+
+	Card.prototype = {
+		removeCard: function() {
+			this.$element.remove();
+		}
+	}
+
+	//Board object
+	var board = {
+		name: 'Kanban Board',
+		addColumn: function(column) {
+			this.$element.append(column.$element);
+			initSortable();
+		},
+		$element: $('#board .column-container')
 	};
 });
