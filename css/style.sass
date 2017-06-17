@@ -1,0 +1,33 @@
+*
+	box-sizing: border-box
+
+body
+	width: 100vw
+
+	div#board
+		width: 100%
+		display: flex
+		justify-content: center
+		flex-wrap: wrap
+
+		h1, span, div.column-container, .column-title
+			width: 100%
+			display: flex
+			justify-content: center
+
+		h1
+			margin-bottom: 40px
+
+		.column
+			flex-grow: 1
+			margin: 2%
+			border: 2px solid red
+			position: relative
+
+			.btn-delete
+				position: absolute
+				top: 3%
+				right: 1%
+
+			.card
+				position: relative

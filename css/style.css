@@ -1,8 +1,29 @@
 * {
-	box-sizing: border-box; 
-}
+  box-sizing: border-box; }
 
 body {
-	margin: 0;
-	padding: 0;
-}
+  width: 100vw; }
+  body div#board {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; }
+    body div#board h1, body div#board span, body div#board div.column-container, body div#board .column-title {
+      width: 100%;
+      display: flex;
+      justify-content: center; }
+    body div#board h1 {
+      margin-bottom: 40px; }
+    body div#board .column {
+      flex-grow: 1;
+      margin: 2%;
+      border: 2px solid red;
+      position: relative; }
+      body div#board .column .btn-delete {
+        position: absolute;
+        top: 3%;
+        right: 1%; }
+      body div#board .column .card {
+        position: relative; }
+
+/*# sourceMappingURL=style.css.map */
