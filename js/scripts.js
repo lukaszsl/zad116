@@ -76,7 +76,8 @@ $(function() {
 		}
 	}
 
-	//Board object
+	//Board object 
+	/*
 	var board = {
 			name: 'Kanban Board',
 			addColumn: function(column) {
@@ -84,7 +85,21 @@ $(function() {
 			initSortable();
 		},
 		$element: $('#board .column-container')
-	};
+	}; */
+
+	function Board(name) {
+		var self = this;
+
+		this.name = name;
+		this.id = randomString();
+		this.$element = createBoard();
+
+		function createBoard() {
+			var $board = $('<div id="board">').addClass('board'),
+				$boardTitle = $('<h1>').text(self.name);
+				//dokończyć tworzenie konstruktora tablicy
+		}
+	}
 
 	function initSortable() {
 		$('.column-card-list').sortable({
@@ -100,9 +115,9 @@ $(function() {
 	});
 
 	// CREATING COLUMNS
-	var todoColumn = new Column('To do');
-	var doingColumn = new Column('Doing');
-	var doneColumn = new Column('Done');
+	var	todoColumn = new Column('To do'),
+		doingColumn = new Column('Doing'),
+		doneColumn = new Column('Done');
 
 	// ADDING COLUMNS TO BOARD
 	board.addColumn(todoColumn);
