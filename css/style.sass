@@ -1,3 +1,5 @@
+$background: #e0e0e0
+
 *
 	box-sizing: border-box
 
@@ -17,17 +19,39 @@ body
 
 		h1
 			margin-bottom: 40px
+			font-size: 50px
+
+		.create-column, .btn-delete, .add-card
+			cursor: pointer
+
+		.create-column
+			background-color: $background
+			padding: 10px
+			border: none
+			border-radius: 10px
 
 		.column
 			flex-grow: 1
 			margin: 2%
-			border: 2px solid red
+			border-radius: 10px
 			position: relative
+			background-color: $background
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2)
 
 			.btn-delete
 				position: absolute
 				top: 3%
 				right: 1%
+				border: none
+				background-color: rgba(244, 244, 244, 0)
+
+			.add-card
+				width: 100%
+				border: none
 
 			.card
 				position: relative
+
+			ul
+				list-style: none
+				padding: 0 10px
