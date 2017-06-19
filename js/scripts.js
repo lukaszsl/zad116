@@ -95,12 +95,34 @@ $(function() {
 		this.$element = createBoard();
 
 		function createBoard() {
+			// CREATING COMPONENTS OF BOARD
 			var $board = $('<div id="board">').addClass('board'),
 				$boardTitle = $('<h1>').text(self.name);
-				//dokończyć tworzenie konstruktora tablicy
+				$boardAddColumnButton = $('<span>').append('<button class="create-column">Add a column</button>');
+				$boardColumnContainer = $('<div>').addClass('column-container');
+			// ADDING EVENTS
+			$boardAddColumnButton.click(function(){
+				var name = prompt('Enter a column name');
+				var column = new Column(name);
+				self.addColumn(column);
+			});
+			// CONSTRUCTION COLUMN ELEMENT
+			$board.append($boardTitle).append($boardAddColumnButton).append($boardColumnContainer);
+		}
+
+		function initSortable() {
+			$('.column-card-list').sortable({
+				connectWith: '.column-card-list',
+				placeholder: 'card-placeholder'
+			}).disableSelection();
 		}
 	}
 
+	var board1 = new Board('Kanban board'),
+		board2 = new Board('Nabnak board');
+
+
+	/*
 	function initSortable() {
 		$('.column-card-list').sortable({
 			connectWith: '.column-card-list',
@@ -131,4 +153,5 @@ $(function() {
 	// ADDING CARDS TO COLUMN
 	todoColumn.addCard(card1);
 	doingColumn.addCard(card2);
+	*/
 });
