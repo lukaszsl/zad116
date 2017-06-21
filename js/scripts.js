@@ -96,31 +96,38 @@ $(function() {
 
 		function createBoard() {
 			// CREATING COMPONENTS OF BOARD
-			var $board = $('<div id="board">').addClass('board'),
+			var $board = $('<div id="'+self.id+'">').addClass('board'),
 				$boardTitle = $('<h1>').text(self.name);
 				$boardAddColumnButton = $('<span>').append('<button class="create-column">Add a column</button>');
 				$boardColumnContainer = $('<div>').addClass('column-container');
-			// ADDING EVENTS
-			$boardAddColumnButton.click(function(){
-				var name = prompt('Enter a column name');
-				var column = new Column(name);
-				self.addColumn(column);
-			});
+			// ADDING EVENTS			
+
+			initSortable();
 			// CONSTRUCTION COLUMN ELEMENT
 			$board.append($boardTitle).append($boardAddColumnButton).append($boardColumnContainer);
-		}
+			$('body').append($board);
 
-		function initSortable() {
-			$('.column-card-list').sortable({
-				connectWith: '.column-card-list',
-				placeholder: 'card-placeholder'
-			}).disableSelection();
-		}
+			$('#'+self.id+' .create-column').click(function(){
+				var name = prompt('Enter a column name');
+				var column = new Column(name);
+				$('#'+self.id+' .column-container').append(column.$element);
+			});
+		}		
 	}
 
-	var board1 = new Board('Kanban board'),
-		board2 = new Board('Nabnak board');
+	function initSortable() {
+		$('.column-card-list').sortable({
+			connectWith: '.column-card-list',
+			placeholder: 'card-placeholder'
+		}).disableSelection();
+	}
 
+	$('#create-board').click(function() {
+		var board = new Board(prompt('Board name: '));		
+	});
+
+	// var board1 = new Board('Kanban board'),
+	// 	board2 = new Board('Nabnak board');
 
 	/*
 	function initSortable() {
